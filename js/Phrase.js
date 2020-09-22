@@ -5,7 +5,8 @@ class Phrase {
   constructor(phrase) {
     this.phrase = phrase.toLowerCase();
   }
-
+  
+  // method to add letter placeholders
   addPhraseToDisplay() {
     let placeHolderHTML = ``;
     // for each character in phrase, check if it's empty space or letter append either space or letter li element to placeHolderHTML
@@ -15,4 +16,10 @@ class Phrase {
     const phraseUL = document.querySelector('#phrase ul');
     phraseUL.innerHTML = placeHolderHTML;
   }
+
+  // method to check if letter selected is present in phrase
+  checkLetter(letter) {
+    return this.phrase.includes(letter);
+  }
+
 }
