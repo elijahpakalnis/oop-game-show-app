@@ -10,10 +10,31 @@ class Game {
     const overlay = document.getElementById('overlay');
     overlay.style.display = 'none';
     // get random phrase
-    this.activePhrase = this.getRandomPhrase();
+    const randomPhrase = this.getRandomPhrase();
+    this.activePhrase = new Phrase(randomPhrase);
     // display phrase on board
-    const phrase = new Phrase(this.activePhrase);
-    phrase.addPhraseToDisplay();
+    this.activePhrase.addPhraseToDisplay();
+  }
+
+  // method to reset the game 
+  resetGame() {
+    // remove all li elements from ul
+    const phraseUL = document.querySelector('#phrase ul');
+    phraseUL.innerHTML = '';
+
+    // enable all of onscreen keyboard buttons
+    const allKeys = document.querySelectorAll('.key');
+    allKeys.forEach(key => {
+      key.enabled = true;
+      key.classList.remove('chosen', 'wrong');
+    });
+
+    // reset all heart images
+    const scoreboard = document.querySelectorAll('#scoreboard img');
+    scoreboard.forEach(heart => heart.setAttribute('src', 'images/liveHeart.png'))
+
+    // reset missed variable
+    this.missed = 0;
   }
 
   // method to randomly retrieve one of phrases
@@ -34,19 +55,19 @@ class Game {
     });
 
     //check if phrase contains letter
-    const phraseContainsLetter = phrase.checkLetter(selectedLetter);
+    const phraseContainsLetter = this.activePhrase.checkLetter(selectedLetter);
     if(!phraseContainsLetter) {
       // doesn't contain => add wrong css class to selected letter keyboard and remove life
       allKeys[selectedKeyIndex].classList.add('wrong');
-      removeLife();
+      this.removeLife();
     } else {
       // contains => add chosen css class to selected letter keyboard
       allKeys[selectedKeyIndex].classList.add('chosen');
-      phrase.showMatchedLetter(selectedLetter);
+      this.activePhrase.showMatchedLetter(selectedLetter);
 
       // check if game won and call gameOver
-      if(checkForWin()) {
-        gameOver();
+      if(this.checkForWin()) {
+        this.gameOver();
       }
     }
   }
@@ -60,6 +81,7 @@ class Game {
     // replace the full heart with lost heart and increment missed variable
     scoreboard[indexReversed].setAttribute('src', 'images/lostHeart.png');
     this.missed++;
+    if(this.missed === 5) this.gameOver();
   }
 
   // method to check if player revealed all letters in active phrase
@@ -70,7 +92,7 @@ class Game {
   }
 
   // method to display win/lose screen
-  gameOver(isWon){
+  gameOver(){
     // get reference to overlay div
     const overlay = document.getElementById('overlay');
     overlay.style.display = 'flex';
