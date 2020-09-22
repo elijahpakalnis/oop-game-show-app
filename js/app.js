@@ -1,3 +1,18 @@
-/* Treehouse FSJS Techdegree
- * Project 4 - OOP Game App
- * app.js */
+const game = new Game(['keep it simple', 'lets go', 'good stuff']);
+
+// start button reference
+const startButton = document.getElementById('btn__reset');
+// click event event listener on button to start game
+startButton.addEventListener('click', e => {
+  game.resetGame();
+  game.startGame()
+
+});
+
+// click event listener for all key buttons
+const keyboard = document.getElementById('qwerty');
+keyboard.addEventListener('click', e => {
+  if(e.target.tagName === 'BUTTON'){
+    game.handleInteraction(e.target.textContent);
+  }
+});
