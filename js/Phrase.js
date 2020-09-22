@@ -21,5 +21,13 @@ class Phrase {
   checkLetter(letter) {
     return this.phrase.includes(letter);
   }
+  
+  // method to reveal letter(s) on the board that matches players selection
+  showMatchedLetter(letter) {
+    // get dom reference of phrase ul li elements
+    const phraseLIElements = document.querySelector('#phrase ul').children;
+    // loop through and check if matches letter, if set the classname from hide to show
+    phraseLIElements.forEach(li => li.classList.contains(letter) ? li.classList.replace('hide', 'show') : '');
+  }
 
 }
