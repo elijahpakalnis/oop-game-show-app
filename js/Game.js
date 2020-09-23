@@ -55,13 +55,23 @@ class Game {
 
   // method to hande player game interaction
   handleInteraction(selectedLetter) {
+    // check if letter already had been selected 
+    let letterAlreadySelected;
+    const disabledKeys = document.querySelectorAll('button[disabled]');
+    disabledKeys.forEach(key => key.textContent === selectedLetter ? letterAlreadySelected = true : '');
+    // if it has been already selected return from the method
+    if(letterAlreadySelected) return; 
+    
     // get reference to all keys
     const allKeys = document.querySelectorAll('.key');
-    // if key match selected letter, disable it and store the index
+  
+    // if key match selected letter, disable it and store its index 
     let selectedKeyIndex;
     allKeys.forEach( (key,index) => {
-      key.disabled = key.textContent === selectedLetter ? true : false;
-      if(key.disabled) selectedKeyIndex = index;
+      if(key.textContent === selectedLetter) {
+        key.disabled = true;
+        selectedKeyIndex = index;
+      }
     });
 
     //check if phrase contains letter
