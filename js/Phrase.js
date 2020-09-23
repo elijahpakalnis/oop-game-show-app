@@ -26,5 +26,4 @@ class Phrase {
     // loop through and check if matches letter, if set the classname from hide to show
     phrasesLI.forEach(li => li.classList.contains(letter) ? li.classList.replace('hide', 'show') : '');
   }
-
 }

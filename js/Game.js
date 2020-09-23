@@ -11,12 +11,15 @@ class Game {
     this.missed = 0;
     this.phrases = phrasesArray;
     this.activePhrase = null;
+    this.isRunning = false;
   }
 
   startGame() {
     // hide the start screen overlay
     const overlay = document.getElementById('overlay');
     overlay.style.display = 'none';
+    // set isRunning game to true
+    this.isRunning = true;
     // get random phrase
     this.activePhrase = this.getRandomPhrase();
     // display phrase on board
@@ -100,9 +103,12 @@ class Game {
 
   // method to display win/lose screen
   gameOver(){
+    // set isRunning game to false
+    this.isRunning = false;
     // get reference to overlay div
     const overlay = document.getElementById('overlay');
     overlay.style.display = 'flex';
+    // stop the game 
     // get reference to gameover message h1
     const gameOverMessageRef = document.getElementById('game-over-message');
     if(this.missed < 5) {

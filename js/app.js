@@ -1,4 +1,4 @@
-let game;
+let game = null;
 
 // start button reference
 const startButton = document.getElementById('btn__reset');
@@ -19,5 +19,11 @@ keyboard.addEventListener('click', e => {
 
 // keyup listener so keyboard can be used
 document.addEventListener('keyup', e => {
-  game.handleInteraction(e.key);
+  // verify game started 
+  if(game !== null && game.isRunning) {
+    // verify user input matches available keys
+    const allKeys = document.querySelectorAll('.key');
+    allKeys.forEach(key => key.textContent === e.key ? game.handleInteraction(e.key) : '');
+  }
+
 });
