@@ -1,7 +1,15 @@
+const phrasesArray = [
+  new Phrase('Hold your horses'), 
+  new Phrase('Barking up the wrong tree'), 
+  new Phrase('Neck of the woods'), 
+  new Phrase('The best of both worlds'), 
+  new Phrase('Your guess is as good as mine')
+];
+
 class Game {
-  constructor(phrases) {
+  constructor() {
     this.missed = 0;
-    this.phrases = phrases;
+    this.phrases = phrasesArray;
     this.activePhrase = null;
   }
 
@@ -10,8 +18,7 @@ class Game {
     const overlay = document.getElementById('overlay');
     overlay.style.display = 'none';
     // get random phrase
-    const randomPhrase = this.getRandomPhrase();
-    this.activePhrase = new Phrase(randomPhrase);
+    this.activePhrase = this.getRandomPhrase();
     // display phrase on board
     this.activePhrase.addPhraseToDisplay();
   }
@@ -88,7 +95,7 @@ class Game {
   checkForWin() {
     // get reference to phrase li letter elements && check if all have 'show' class
     const phrasesLI = document.querySelectorAll('.letter');
-    return [...phrasesLI].every(li => li.classList.contains('show'))
+    return [...phrasesLI].every(li => li.classList.contains('show'));
   }
 
   // method to display win/lose screen
