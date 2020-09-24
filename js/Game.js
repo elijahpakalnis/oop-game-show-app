@@ -35,7 +35,7 @@ class Game {
     // enable all of onscreen keyboard buttons
     const allKeys = document.querySelectorAll('.key');
     allKeys.forEach(key => {
-      key.enabled = true;
+      key.disabled = false;
       key.classList.remove('chosen', 'wrong');
     });
 
@@ -64,7 +64,6 @@ class Game {
     
     // get reference to all keys
     const allKeys = document.querySelectorAll('.key');
-  
     // if key match selected letter, disable it and store its index 
     let selectedKeyIndex;
     allKeys.forEach( (key,index) => {
