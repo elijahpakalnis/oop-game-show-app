@@ -2,8 +2,8 @@ const phrasesArray = [
   new Phrase('Hold your horses'), 
   new Phrase('Barking up the wrong tree'), 
   new Phrase('Neck of the woods'), 
-  new Phrase('The best of both worlds'), 
-  new Phrase('Your guess is as good as mine')
+  new Phrase('Piece of cake'), 
+  new Phrase('Everything but the kitchen sink')
 ];
 
 class Game {
@@ -39,9 +39,9 @@ class Game {
       key.classList.remove('chosen', 'wrong');
     });
 
-    // reset all heart images
+    // reset all lifes left images
     const scoreboard = document.querySelectorAll('#scoreboard img');
-    scoreboard.forEach(heart => heart.setAttribute('src', 'images/liveHeart.png'))
+    scoreboard.forEach(heart => heart.setAttribute('src', 'images/liveSmiley.png'))
 
     // reset missed variable
     this.missed = 0;
@@ -93,12 +93,12 @@ class Game {
 
   // method to remove life from scoreboard
   removeLife() {
-    // get a reference to the scoreboard hearts
+    // get a reference to the scoreboard imgs
     const scoreboard = document.querySelectorAll('#scoreboard img');
-    // reversed it so hearts are removed from right to left
+    // reversed it so lifes are removed from right to left
     const indexReversed = (scoreboard.length - 1) - this.missed;
-    // replace the full heart with lost heart and increment missed variable
-    scoreboard[indexReversed].setAttribute('src', 'images/lostHeart.png');
+    // replace the live with lost smiley and increment missed variable
+    scoreboard[indexReversed].setAttribute('src', 'images/lostSmiley.png');
     this.missed++;
     if(this.missed === 5) this.gameOver();
   }
@@ -117,16 +117,15 @@ class Game {
     // get reference to overlay div
     const overlay = document.getElementById('overlay');
     overlay.style.display = 'flex';
-    // stop the game 
     // get reference to gameover message h1
     const gameOverMessageRef = document.getElementById('game-over-message');
     if(this.missed < 5) {
       // won message and screen
-      gameOverMessageRef.textContent = "Congratulations you won! :)";
+      gameOverMessageRef.textContent = "You rocked this, congratz ^_^, start game to play again";
       overlay.classList.replace('start', 'win');
     }else{
       // lost message and screen
-      gameOverMessageRef.textContent = "Unfortunately you lost :(";
+      gameOverMessageRef.textContent = "Oh no all smileys x_x, start game to try again";
       overlay.classList.replace('start', 'lose');
     }
   }

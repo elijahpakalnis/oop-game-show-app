@@ -6,7 +6,7 @@ class Phrase {
   // method to add letter placeholders
   addPhraseToDisplay() {
     let placeHolderHTML = ``;
-    // for each character in phrase, check if it's empty space or letter append either space or letter li element to placeHolderHTML
+    // for each character in phrase, check if it's empty space or letter & append either space or letter li element to placeHolderHTML
     [...this.phrase].forEach(char => placeHolderHTML += (char === ' '? `<li class="space"> </li>` : `<li class="hide letter ${char}">${char}</li>`));
     
     // get the dom reference of phrase div ul & set the li elements

@@ -24,6 +24,5 @@ document.addEventListener('keyup', e => {
     // verify user input matches available keys
     const allKeys = document.querySelectorAll('.key');
     allKeys.forEach(key => key.textContent === e.key ? game.handleInteraction(e.key) : '');
-  }
-
+  } 
 });
