@@ -10,7 +10,7 @@ This project allows user 2 ways of inputting data,
 by clicking the letters, and by typing on keyboard.
 
 So part of this project submission is also to note what was changed in CSS, truth is
-I'm till a noob with CSS stuff, so it was all superficial, just changed background colors, transparency, borders, some margins, image widths/heights.
+I'm still a noob with CSS stuff, so it was all superficial, just changed background colors, transparency, borders, some margins, image widths/heights.
 
 + removed the folowing colors :root
   --color-win: #78CF82;
@@ -50,8 +50,6 @@ I'm till a noob with CSS stuff, so it was all superficial, just changed backgrou
 + removed .btn_reset & .btn_reset:active 
 
 + added #qwerty marin-top: 25px
-
-+ added .tries img{ width: 99px; height: 99px} for custom image
 
 + removed .start a, .win a, .lose a since they were no longer needed
 

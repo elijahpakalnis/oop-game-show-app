@@ -1,15 +1,7 @@
-const phrasesArray = [
-  new Phrase('Hold your horses'), 
-  new Phrase('Barking up the wrong tree'), 
-  new Phrase('Neck of the woods'), 
-  new Phrase('Piece of cake'), 
-  new Phrase('Everything but the kitchen sink')
-];
-
 class Game {
   constructor() {
     this.missed = 0;
-    this.phrases = phrasesArray;
+    this.phrases = this.createPhrases();
     this.activePhrase = null;
     this.isRunning = false;
   }
@@ -41,10 +33,7 @@ class Game {
 
     // reset all lifes left images
     const scoreboard = document.querySelectorAll('#scoreboard img');
-    scoreboard.forEach(heart => heart.setAttribute('src', 'images/liveSmiley.png'))
-
-    // reset missed variable
-    this.missed = 0;
+    scoreboard.forEach(heart => heart.setAttribute('src', 'images/liveSmiley.png'));
   }
 
   // method to randomly retrieve one of phrases
@@ -128,5 +117,17 @@ class Game {
       gameOverMessageRef.textContent = "Oh no all smileys x_x, start game to try again";
       overlay.classList.replace('start', 'lose');
     }
+    this.resetGame();
+  }
+
+  createPhrases(){
+    const phrasesArray = [
+      new Phrase('Hold your horses'), 
+      new Phrase('Against all odds'), 
+      new Phrase('Neck of the woods'), 
+      new Phrase('Piece of cake'), 
+      new Phrase('Everything but the kitchen sink')
+    ];
+    return phrasesArray;    
   }
 }

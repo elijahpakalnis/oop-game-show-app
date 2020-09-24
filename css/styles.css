@@ -139,12 +139,6 @@ button {
   margin-top: 25px;
 }
 
-/* Tries Img */
-.tries img {
-  width: 99px;
-  height: 99px;
-}
-
 /* Overlay */
 #overlay {
   display: flex;
